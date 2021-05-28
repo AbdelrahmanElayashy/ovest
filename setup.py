@@ -48,6 +48,6 @@ setup(
     url='https://github.com/myovest/myovest',
     version='0.1.0',
     zip_safe=False,
-    scripts=['bin/run.py'],
+    scripts=['bin/script-program.py'],
     package_data={'ovest': ['data/cap_data.txt']},
 )
