@@ -42,7 +42,7 @@ setup(
     name='myovest',
     packages=find_packages(include=['ovest', 'ovest.acceleration',
                                     'ovest.alert', 'ovest.alert.gbs',
-                                    'ovest.alert.gsm']),
+                                    'ovest.alert.gsm','ovest.database']),
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/myovest/myovest',
