@@ -104,3 +104,4 @@ ENV/
 # IDE settings
 .vscode/
 ovest/database/adminSDK.json
+ovest/data/adminSDK.json
