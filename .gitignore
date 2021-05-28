@@ -103,3 +103,5 @@ ENV/
 
 # IDE settings
 .vscode/
+ovest/database/serviceAccountCredentials.json
+ovest/database/adminSDK.json
