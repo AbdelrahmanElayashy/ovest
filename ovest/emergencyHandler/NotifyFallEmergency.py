@@ -18,7 +18,7 @@ class NotifyFallEmergency(emr.NotifyEmergency):
         internet_connected = super().check_internet_connection()
         #timezone berlin
         ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-        if not internet_connected:
+        if internet_connected:
             self.db.update_child(self.fall, "Fall_Detected")
             self.db.update_child(self.timestamp, ts)
         else:
@@ -38,7 +38,7 @@ class NotifyFallEmergency(emr.NotifyEmergency):
         internet_connected = super().check_internet_connection()
         #timezone berlin
         ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-        if not internet_connected:
+        if internet_connected:
             self.db.update_child(self.fall, "NO_Fall_Detected")
             self.db.update_child(self.timestamp, ts)
         else:
