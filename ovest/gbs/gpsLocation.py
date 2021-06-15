@@ -1,7 +1,7 @@
 import busio
 import board
 import adafruit_gps
-from ovest.alert.gbs import GpsModule
+from ovest.gbs import GpsModule
 from time import monotonic as timer
 import time
 
