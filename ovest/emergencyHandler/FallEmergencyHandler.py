@@ -12,7 +12,7 @@ class FallEmergencyHandler:
             time.sleep(0.05)
             if status:
                 self.notify.notify_emergency_fallen()
-                time.sleep(400)
+                time.sleep(4)
                 self.notify.notify_emergency_not_fallen()
                 for i in range(1000):
                     print("###############FALL DETECTED#######################")

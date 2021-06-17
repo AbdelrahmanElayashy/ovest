@@ -13,6 +13,6 @@ class OutZoneEmergencyHandler:
         while True:
             print("checking OUT ZONE")
             if not inter.check_internet_connection():
-                schedule.run_pending()
+                schedule.run_all()
+                time.sleep(5)
             time.sleep(2)
-

@@ -8,6 +8,7 @@ import threading
 import time
 import datetime
 from concurrent.futures import ThreadPoolExecutor
+from ovest.gsm import Gsm
 
 def main():
     bus = smbus.SMBus(1) 	# or bus = smbus.SMBus(0) for older version boards
@@ -18,6 +19,7 @@ def main():
         time.time()).strftime('%Y-%m-%d %H:%M:%S')
     db = crud.FirebaseDatabase("myovest", "test", {"is_fall": "NO_Fall_Detected",
                                                    "timestamp": ts, "Lat": 0, "Long": 0})  # add attributes to database
+    gsm = Gsm()
     notify_fall = NotifyFallEmergency.NotifyFallEmergency(
         db, "is_fall", "timestamp")
     notify_out_zone = NotifyOutZoneEmergency.NotifyOutZoneEmergency(
@@ -25,8 +27,7 @@ def main():
     fall_emer = FallEmergencyHandler.FallEmergencyHandler(accel, notify_fall)
     out_zone_emer = OutZoneEmergencyHandler.OutZoneEmergencyHandler(
         notify_out_zone)
-    # _thread.start_new_thread(fall_emer.run_fall_emergency_handler(), ())
-    # _thread.start_new_thread(out_zone_emer.run_out_zone_handler(), ())
+        
     executor = ThreadPoolExecutor(max_workers=3)
     task1 = executor.submit(fall_emer.run_fall_emergency_handler)
     task2 = executor.submit(out_zone_emer.run_out_zone_handler)

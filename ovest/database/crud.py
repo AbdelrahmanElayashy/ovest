@@ -18,7 +18,7 @@ class FirebaseDatabase:
         self.collection = collection
         self.user_document = user_document
         self.db_attribute = db_attribute
-        self.initialize_db()
+        # self.initialize_db()
 
     def initialize_db(self):
         coll_ref = self.db.collection(u"{}".format(self.collection))
