@@ -20,9 +20,9 @@ def main():
     db = crud.FirebaseDatabase("myovest", "test", {"is_fall": "NO_Fall_Detected",
                                                    "timestamp": ts, "Lat": 0, "Long": 0})  # add attributes to database
     gsm = Gsm()
-    notify_fall = NotifyFallEmergency.NotifyFallEmergency(
+    notify_fall = NotifyFallEmergency.NotifyFallEmergency(gsm,
         db, "is_fall", "timestamp")
-    notify_out_zone = NotifyOutZoneEmergency.NotifyOutZoneEmergency(
+    notify_out_zone = NotifyOutZoneEmergency.NotifyOutZoneEmergency(gsm,
         db, "timestamp", "Lat", "Long")
     fall_emer = FallEmergencyHandler.FallEmergencyHandler(accel, notify_fall)
     out_zone_emer = OutZoneEmergencyHandler.OutZoneEmergencyHandler(
