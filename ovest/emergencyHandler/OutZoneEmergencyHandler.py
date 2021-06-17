@@ -1,5 +1,7 @@
 from ovest.gbs import gpsLocation
 from ovest.emergencyHandler import internet as inter
+import schedule
+import time
 
 
 class OutZoneEmergencyHandler:
@@ -7,7 +9,10 @@ class OutZoneEmergencyHandler:
         self.notify = notify_emergency
 
     def run_out_zone_handler(self):
+        schedule.every(5).minutes.do(self.notify.notify_location_out_zone)
         while True:
+            print("checking OUT ZONE")
             if not inter.check_internet_connection():
-                self.notify.notify_location_out_zone()
-            sleep(500)
+                schedule.run_pending()
+            time.sleep(2)
+

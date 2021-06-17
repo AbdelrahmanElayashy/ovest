@@ -14,7 +14,7 @@ class NotifyOutZoneEmergency():
         self.long = db_attr_long
 
     def notify_location_out_zone(self):
-       
+        
         ts = datetime.datetime.fromtimestamp(time.time()).strftime(
             '%Y-%m-%d %H:%M:%S')  # timezone berlin
         gsm.update_db_per_http(self.db.collection, self.db.user_document,
