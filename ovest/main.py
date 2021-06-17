@@ -1,7 +1,6 @@
 """Main module."""
 
-from ovest.emergencyHandler import FallEmergencyHandler
-from ovest.emergencyHandler import NotifyFallEmergency
+from ovest.emergencyHandler import FallEmergencyHandler, NotifyFallEmergency, OutZoneEmergencyHandler, NotifyOutZoneEmergency
 from ovest.database import crud
 from ovest.acceleration import Acceleration
 import smbus
@@ -17,9 +16,12 @@ def main():
     ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
     db = crud.FirebaseDatabase("myovest", "test", {"is_fall": "NO_Fall_Detected",
     "timestamp" : ts, "Lat" : 0, "Long" : 0})# add attributes to database
-    notify = NotifyFallEmergency.NotifyFallEmergency(db, "is_fall", "timestamp", "Lat", "Long")
-    fall_emer = FallEmergencyHandler.FallEmergencyHandler(accel, notify)
+    notify_fall = NotifyFallEmergency.NotifyFallEmergency(db, "is_fall", "timestamp")
+    notify_out_zone = NotifyOutZoneEmergency.NotifyOutZoneEmergency(db, "timestamp", "Lat", "Long")
+    fall_emer = FallEmergencyHandler.FallEmergencyHandler(accel, notify_fall)
+    out_zone_emer = OutZoneEmergencyHandler.OutZoneEmergencyHandler(notify_out_zone)
     _thread.start_new_thread(fall_emer.run_fall_emergency_handler(), () )
+    _thread.start_new_thread(out_zone_emer.run_out_zone_handler(), () )
    
 
 
