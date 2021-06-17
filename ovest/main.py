@@ -19,7 +19,7 @@ def main():
         time.time()).strftime('%Y-%m-%d %H:%M:%S')
     db = crud.FirebaseDatabase("myovest", "test", {"is_fall": "NO_Fall_Detected",
                                                    "timestamp": ts, "Lat": 0, "Long": 0})  # add attributes to database
-    gsm = Gsm()
+    gsm = Gsm.Gsm()
     notify_fall = NotifyFallEmergency.NotifyFallEmergency(gsm,
         db, "is_fall", "timestamp")
     notify_out_zone = NotifyOutZoneEmergency.NotifyOutZoneEmergency(gsm,

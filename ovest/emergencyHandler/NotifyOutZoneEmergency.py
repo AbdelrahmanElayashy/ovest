@@ -14,14 +14,14 @@ class NotifyOutZoneEmergency():
         self.gsm = gsm
 
     def notify_location_out_zone(self):
-        
+
         ts = datetime.datetime.fromtimestamp(time.time()).strftime(
             '%Y-%m-%d %H:%M:%S')  # timezone berlin
         # get gps location
         vlat, vlong = gpsLocation.get_coordinate_location()
         self.gsm.update_db_per_http(self.db.collection, self.db.user_document,
-                               self.lat, vlat)
+                                    self.lat, vlat)
         self.gsm.update_db_per_http(self.db.collection, self.db.user_document,
-                               self.long, vlong)
+                                    self.long, vlong)
         self.gsm.update_db_per_http(self.db.collection, self.db.user_document,
-                               self.timestamp, ts)
+                                    self.timestamp, ts)

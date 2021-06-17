@@ -19,13 +19,13 @@ class NotifyFallEmergency:
         ts = datetime.datetime.fromtimestamp(
             time.time()).strftime('%Y-%m-%d %H:%M:%S')
         if internet_connected:
-            self.db.update_child(self.fall, "Fall_Detected")
+            self.db.update_child(self.fall, "Fall Detected")
             self.db.update_child(self.timestamp, ts)
         else:
             # NO internet
             print("@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@##@#@#@#@#")
             self.gsm.update_db_per_http(self.db.collection, self.db.user_document,
-                                   self.fall, 1)
+                                   self.fall, "Fall%20Detected")
             self.gsm.update_db_per_http(self.db.collection, self.db.user_document,
                                    self.timestamp, ts)
 
@@ -39,6 +39,6 @@ class NotifyFallEmergency:
             self.db.update_child(self.timestamp, ts)
         else:
             self.gsm.update_db_per_http(self.db.collection, self.db.user_document,
-                                   self.fall, "NOFallDetected")
+                                   self.fall, "NO%20Fall%20Detected")
             self.gsm.update_db_per_http(self.db.collection, self.db.user_document,
                                    self.timestamp, ts)
